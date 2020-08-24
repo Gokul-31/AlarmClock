@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blackish"
+    tools:context=".TimerFrag">
+
+    <NumberPicker
+        android:id="@+id/tm_picker_sec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/PickerTheme"
+        app:layout_constraintBottom_toBottomOf="@+id/tm_dum1"
+        app:layout_constraintEnd_toStartOf="@+id/tm_set"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tm_dum1"
+        app:layout_constraintTop_toTopOf="@+id/tm_dum1"
+        app:layout_constraintVertical_bias="0.503" />
+
+    <NumberPicker
+        android:id="@+id/tm_picker_min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:theme="@style/PickerTheme"
+        app:layout_constraintEnd_toStartOf="@+id/tm_dum1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tm_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/_10_00"
+        android:textColor="@color/colorAccent"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tm_picker_sec" />
+
+    <Button
+        android:id="@+id/tm_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/start"
+        android:padding="12dp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/custom_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tm_timer" />
+
+    <Button
+        android:id="@+id/tm_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/reset"
+        android:padding="12dp"
+        android:textColor="@android:color/white"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tm_start" />
+
+    <Button
+        android:id="@+id/tm_set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/set"
+        android:padding="12dp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/custom_button"
+        app:layout_constraintBottom_toBottomOf="@+id/tm_picker_sec"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tm_picker_sec"
+        app:layout_constraintTop_toTopOf="@+id/tm_picker_sec" />
+
+    <TextView
+        android:id="@+id/tm_dum1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_colon"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tm_picker_min"
+        app:layout_constraintEnd_toStartOf="@+id/tm_picker_sec"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tm_picker_min"
+        app:layout_constraintTop_toTopOf="@+id/tm_picker_min" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
