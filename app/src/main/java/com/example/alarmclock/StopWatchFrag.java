@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -14,12 +16,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class StopWatchFrag extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -27,17 +28,22 @@ public class StopWatchFrag extends Fragment {
         // Required empty public constructor
     }
 
-//    Calendar t;
-
     long time;
+    ArrayList<LapClass> laps;
 
     Button startBt;
     Button resetBt;
+    Button lapBt;
 
     Handler h;
     Runnable runnable;
 
+    RecyclerView rView;
+    LapAdapter adapter;
+    RecyclerView.LayoutManager layoutManager;
+
     boolean started=false;
+    boolean firstStart=true;
 
     int min;
     int sec;
@@ -47,10 +53,14 @@ public class StopWatchFrag extends Fragment {
     TextView secTv;
     TextView milliSecTv;
 
+    long PAUSEOFFSET;
+
     Calendar start;
     Calendar run;
 
-    // TODO: Rename and change types and number of parameters
+    String secFormatted;
+    String millisecFormatted;
+
     public static StopWatchFrag newInstance(String param1, String param2) {
         StopWatchFrag fragment = new StopWatchFrag();
 
@@ -66,7 +76,6 @@ public class StopWatchFrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_stop_watch, container, false);
     }
 
@@ -76,9 +85,25 @@ public class StopWatchFrag extends Fragment {
 
         startBt=getView().findViewById(R.id.sp_start);
         resetBt=getView().findViewById(R.id.sp_reset);
+        lapBt=getView().findViewById(R.id.sp_lap);
         minTv=getView().findViewById(R.id.sp_min);
         secTv=getView().findViewById(R.id.sp_sec);
         milliSecTv=getView().findViewById(R.id.sp_milli_sec);
+        rView=getView().findViewById(R.id.sp_recyclerView);
+//        laps=new ArrayList<>();
+        adapter=new LapAdapter(Global.laps);
+        layoutManager=new LinearLayoutManager(getContext());
+        rView.setLayoutManager(layoutManager);
+        rView.setAdapter(adapter);
+
+        if(started){
+            startBt.setText(R.string.pause);
+        }
+        if(Global.laps.size()>0){
+            adapter.notifyDataSetChanged();
+        }
+
+
         h=new Handler();
 
         runnable= new Runnable() {
@@ -86,33 +111,26 @@ public class StopWatchFrag extends Fragment {
             public void run() {
 
                 run=Calendar.getInstance();
-                time=(run.getTimeInMillis()-start.getTimeInMillis());
+                time=(run.getTimeInMillis()-start.getTimeInMillis()+PAUSEOFFSET);
 
-//                min=(int) (time/60000);
                 sec=(int) (time/1000)%60;
                 millisec=(int) (time%1000);
 
-                String secFormatted=String.format("%02d",sec);
-                String millisecFormatted=String.format("%03d",millisec);
-
+                secFormatted=String.format("%02d",sec);
+                millisecFormatted=String.format("%03d",millisec);
 
                 minTv.setText(""+(time/60000));
                 secTv.setText(secFormatted);
-//                if((time%1000)<10){
-//                    milliSecTv.setText("00"+time%1000);
-//                }
-//                else if((time%1000)<100){
-//                    milliSecTv.setText("0"+time%1000);
-//                }
-//                else{
-//                    milliSecTv.setText(""+time%1000);
-//                }
                 milliSecTv.setText(millisecFormatted);
-
                 h.postDelayed(runnable,1);
             }
         };
 
+        if(start!=null) {
+            minTv.setText(""+(time/60000));
+            secTv.setText(secFormatted);
+            milliSecTv.setText(millisecFormatted);
+        }
 
         startBt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,8 +143,18 @@ public class StopWatchFrag extends Fragment {
                 }else{
                     started=false;
                     startBt.setText(R.string.start);
+                    PAUSEOFFSET+=run.getTimeInMillis()-start.getTimeInMillis();
                     h.removeCallbacks(runnable);
                 }
+            }
+        });
+
+        lapBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LapClass l =new LapClass(time);
+                Global.laps.add(l);
+                layoutManager.scrollToPosition(adapter.getItemCount()-1);
             }
         });
 
@@ -140,20 +168,13 @@ public class StopWatchFrag extends Fragment {
                 milliSecTv.setText(R.string.zero_zero_zero);
                 startBt.setText(R.string.start);
                 started=false;
+                firstStart=true;
                 h.removeCallbacks(runnable);
+                PAUSEOFFSET=0;
+                Global.laps.clear();
+                adapter.clearAll();
             }
         });
-    }
-
-    public long getMin(){
-        return (time/1000)/60;
-    }
-
-    public long getSec(){
-        return (time/1000)%60;
-    }
-    public long getMilliSec(){
-        return time%1000;
     }
 
 }

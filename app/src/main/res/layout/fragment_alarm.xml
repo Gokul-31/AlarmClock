@@ -1,52 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".AlarmFrag">
 
     <TextView
         android:id="@+id/Al_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="@string/no_alarm_set"
         android:textColor="@color/colorAccent"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TimePicker
         android:id="@+id/Al_timePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
         android:theme="@style/PickerTheme"
-        android:timePickerMode="spinner" />
+        android:timePickerMode="spinner"
+        app:layout_constraintBottom_toTopOf="@+id/al_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Al_time" />
 
     <Button
-        android:id="@+id/Al_set_btn"
+        android:id="@+id/al_add_btn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="15dp"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:layout_marginTop="15dp"
         android:background="@drawable/custom_button"
-        android:text="@string/add_alarm" />
+        android:padding="15dp"
+        android:text="@string/add_alarm"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/al_cancel_btn"
+        app:layout_constraintEnd_toStartOf="@+id/al_cancel_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/al_cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/custom_button"
         android:padding="15dp"
         android:text="@string/cancel"
         android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/al_add_btn2" />
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/al_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/al_layout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/al_spinner">
+
+        <Button
+            android:id="@+id/al_mBt"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/day_button"
+            android:text="@string/mo"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/al_tuBt"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/day_button"
+            android:text="Tu"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/al_wBt"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/day_button"
+            android:text="W"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/al_thBt"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/day_button"
+            android:text="Th"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/al_layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/al_add_btn2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/al_layout1">
+
+        <Button
+            android:id="@+id/al_fBt"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/day_button"
+            android:text="F"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/al_saBt"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/day_button"
+            android:text="Sa"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/al_suBt"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/day_button"
+            android:text="Su"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/al_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/al_layout1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Al_timePicker" />
+
+    <TextView
+        android:id="@+id/al_songTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Select Song-->"
+        android:textColor="@color/yellow"
+        app:layout_constraintEnd_toStartOf="@+id/al_spinner"
+        app:layout_constraintTop_toTopOf="@+id/al_spinner" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

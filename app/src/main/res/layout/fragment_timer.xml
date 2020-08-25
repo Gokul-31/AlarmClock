@@ -11,81 +11,76 @@
         android:id="@+id/tm_picker_sec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:theme="@style/PickerTheme"
-        app:layout_constraintBottom_toBottomOf="@+id/tm_dum1"
-        app:layout_constraintEnd_toStartOf="@+id/tm_set"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tm_dum1"
-        app:layout_constraintTop_toTopOf="@+id/tm_dum1"
-        app:layout_constraintVertical_bias="0.503" />
+        app:layout_constraintTop_toTopOf="@+id/tm_picker_min" />
 
     <NumberPicker
         android:id="@+id/tm_picker_min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="32dp"
         android:theme="@style/PickerTheme"
         app:layout_constraintEnd_toStartOf="@+id/tm_dum1"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tm_timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="@string/_10_00"
         android:textColor="@color/colorAccent"
-        android:textSize="30sp"
+        android:textSize="50sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tm_start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tm_picker_sec" />
+        app:layout_constraintTop_toBottomOf="@+id/tm_set" />
 
     <Button
         android:id="@+id/tm_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/start"
-        android:padding="12dp"
-        android:textColor="@android:color/white"
         android:background="@drawable/custom_button"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="12dp"
+        android:text="@string/start"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/tm_reset"
+        app:layout_constraintEnd_toStartOf="@+id/tm_reset"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tm_timer" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/tm_reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/custom_button"
-        android:text="@string/reset"
         android:padding="12dp"
+        android:text="@string/reset"
         android:textColor="@android:color/white"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tm_start" />
+        app:layout_constraintStart_toEndOf="@+id/tm_start" />
 
     <Button
         android:id="@+id/tm_set"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/set"
-        android:padding="12dp"
-        android:textColor="@android:color/white"
+        android:layout_marginTop="40dp"
         android:background="@drawable/custom_button"
-        app:layout_constraintBottom_toBottomOf="@+id/tm_picker_sec"
+        android:padding="12dp"
+        android:text="@string/set"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tm_picker_sec"
-        app:layout_constraintTop_toTopOf="@+id/tm_picker_sec" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tm_picker_min" />
 
     <TextView
         android:id="@+id/tm_dum1"
@@ -95,9 +90,9 @@
         android:textColor="@android:color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/tm_picker_min"
-        app:layout_constraintEnd_toStartOf="@+id/tm_picker_sec"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tm_picker_min"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tm_picker_min" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

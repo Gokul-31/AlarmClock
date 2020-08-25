@@ -15,6 +15,9 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
 
+    Fragment f1;
+    Fragment f2;
+    Fragment f3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +25,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         bottomNavigationView=findViewById(R.id.bottom_nav);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frag_tag,new AlarmFrag()).commit();
+        f1=new AlarmFrag();
+        f2=new TimerFrag();
+        f3=new StopWatchFrag();
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.frag_tag,f1).commit();
         bottomNavigationView.setSelectedItemId(R.id.Alarm);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -31,19 +38,18 @@ public class MainActivity extends AppCompatActivity {
                 Fragment frag=null;
                 switch (item.getItemId()){
                     case R.id.Alarm:
-                        frag=new AlarmFrag();
+                        frag=f1;
                         break;
                     case R.id.Timer:
-                        frag=new TimerFrag();
+                        frag=f2;
                         break;
                     case R.id.StopWatch:
-                        frag=new StopWatchFrag();
+                        frag=f3;
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.frag_tag,frag).commit();
                 return true;  //to select the item
             }
         });
-
     }
 }

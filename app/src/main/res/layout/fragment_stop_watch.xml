@@ -9,17 +9,43 @@
 
 
     <Button
-        android:id="@+id/sp_start"
+        android:id="@+id/sp_lap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="56dp"
         android:background="@drawable/custom_button"
-        android:text="@string/start"
+        android:text="Lap"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sp_reset"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/sp_start" />
+
+    <Button
+        android:id="@+id/sp_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/start"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sp_lap"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/sp_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/reset"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/sp_lap" />
 
     <TextView
         android:id="@+id/sp_min"
@@ -38,7 +64,7 @@
         android:id="@+id/sp_sec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="32dp"
         android:text="@string/zero_zero"
         android:textColor="@color/colorAccent"
         android:textSize="60sp"
@@ -62,53 +88,57 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/sp_sec" />
 
-    <Button
-        android:id="@+id/sp_reset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        android:background="@drawable/custom_button"
-        android:text="@string/reset"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/sp_start" />
-
     <TextView
         android:id="@+id/sp_min_m"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/m"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/sp_min"
-        app:layout_constraintStart_toEndOf="@+id/sp_min"
-        app:layout_constraintTop_toTopOf="@+id/sp_min" />
+        app:layout_constraintStart_toEndOf="@+id/sp_min" />
 
     <TextView
         android:id="@+id/sp_sec_s"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/s"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/sp_sec"
-        app:layout_constraintStart_toEndOf="@+id/sp_sec"
-        app:layout_constraintTop_toTopOf="@+id/sp_sec" />
+        app:layout_constraintStart_toEndOf="@+id/sp_sec" />
 
     <TextView
         android:id="@+id/sp_milli_sec_s2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
         android:text="ms"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/sp_milli_sec"
-        app:layout_constraintStart_toEndOf="@+id/sp_milli_sec"
-        app:layout_constraintTop_toTopOf="@+id/sp_milli_sec" />
+        app:layout_constraintStart_toEndOf="@+id/sp_milli_sec" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/sp_recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical"
+        android:background="@color/blackish"
+
+        app:layout_constraintBottom_toTopOf="@+id/sp_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_min" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
