@@ -52,7 +52,7 @@ public class Alarm extends AppCompatActivity {
             public void run() {
                 disappear();
                 disBt[(int)(Math.random()*5)].setVisibility(View.VISIBLE);
-                h.postDelayed(r,1000);
+                h.postDelayed(r,1500);
             }
         };
 
