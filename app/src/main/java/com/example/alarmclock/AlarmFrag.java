@@ -280,26 +280,26 @@ public class AlarmFrag extends Fragment implements TimePicker.OnTimeChangedListe
         PendingIntent pendingIntent=PendingIntent.getBroadcast(getContext(),1,intent,0);
         alarmManager.cancel(pendingIntent);
 
-        if(c.before(Calendar.getInstance())){
-            c.add(Calendar.DATE,1);
-        }
-
+//        if(c.before(Calendar.getInstance())){
+//            c.add(Calendar.DATE,1);
+//        }
+//
 //        for(int i=0;i<7;i++) {
 //            PendingIntent pendingIntent=PendingIntent.getBroadcast(getContext(),i+1,intent,0);
 //            alarmManager.cancel(pendingIntent);
 //        }
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP,alarmTime.getTimeInMillis(),pendingIntent);
+//        alarmManager.setExact(AlarmManager.RTC_WAKEUP,alarmTime.getTimeInMillis(),pendingIntent);
 
-//        for(int i=0;i<7;i++) {
-//            if(Global.days[i]) {
-//                c.set(Calendar.DAY_OF_WEEK,i+1);
-//                c.set(Calendar.SECOND,0);
-//                Log.i(TAG, "addAlarm: day:  "+(i+1));
-//                Log.i(TAG, "ms: "+c.getTimeInMillis());
+        for(int i=0;i<7;i++) {
+            if(Global.days[i]) {
+                c.set(Calendar.DAY_OF_WEEK,i+1);
+                c.set(Calendar.SECOND,0);
+                Log.i(TAG, "addAlarm: day:  "+(i+1));
+                Log.i(TAG, "ms: "+c.getTimeInMillis());
 //                PendingIntent pendingIntent=PendingIntent.getBroadcast(getContext(),i+1,intent,0);
-//                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), WEEK_IN_MS  , pendingIntent);
-//            }
-//        }
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), WEEK_IN_MS  , pendingIntent);
+            }
+        }
     }
 
 }
